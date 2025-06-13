@@ -15,7 +15,7 @@ Modélisation mathématique à partir de la loi de Fourier et de l’équation d
 - Formulation variationnelle et preuve d’existence/unicité de solution via le théorème de Lax-Milgram.
 - Maillage complexe du domaine (≈ 45 000 triangles) simulant une habitation réelle (béton, bois, PVC, vitrage, radiateurs...).
 - Implémentation d’un solveur numérique en Python avec FreeFem++ pour la génération du maillage et des matrices d’assemblage.
-- Étude de cas homogènes et non homogènes en faisant varier l’activation des radiateurs et les flux sur le bord.
+- Étude de cas homogènes et non homogènes (ajout d'un ventilateur mécanique) en faisant varier l’activation des radiateurs et les flux sur le bord.
 
 ---
 
