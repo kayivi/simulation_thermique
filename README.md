@@ -29,9 +29,9 @@ Projet réalisé en binôme dans le cadre du cours sur La méthode des élément
 ---
 
 ## 📷 Résultats
-‣ Visualisation de la diffusion thermique selon la position des sources et la conductivité des parois
-‣ Analyse de l’influence des matériaux, de la géométrie et des conditions aux limites sur le confort thermique
-‣ Observation d’une meilleure homogénéité thermique avec VMC et portes ouvertes, mais aussi de pertes thermiques plus fortes en périphérie
+- Visualisation de la diffusion thermique selon la position des sources et la conductivité des parois
+- Analyse de l’influence des matériaux, de la géométrie et des conditions aux limites sur le confort thermique
+- Observation d’une meilleure homogénéité thermique avec VMC et portes ouvertes, mais aussi de pertes thermiques plus fortes en périphérie
 
 | Cas homogène | Cas non homogène |
 |---------------------------|-------------------|
