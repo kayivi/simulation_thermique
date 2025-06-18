@@ -5,7 +5,12 @@ Projet réalisé en binôme dans le cadre du cours sur La méthode des élément
 ## 🎯 Objectif
 
 -  Étudier la distribution thermique dans un logement 2D réaliste en résolvant l'équation de la chaleur stationnaire à l'aide de la FEM.
--  Analyser l’impact des matériaux, des sources de chaleur (radiateurs), et des conditions aux limites sur la température intérieure. 
+
+<p align='center'>
+    <a href="https://github.com/kayivi/simulation_thermique/blob/main/figures/plan_maison.png"><img height="250" src="https://github.com/kayivi/simulation_thermique/blob/main/figures/plan_maison.png"?raw=true">
+</p>
+      
+-  Analyser l’impact des matériaux, des sources de chaleur (radiateurs), et des conditions aux limites sur la température intérieure.
 
 ---
 
