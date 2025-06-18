@@ -40,7 +40,7 @@ Projet réalisé en binôme dans le cadre du cours sur La méthode des élément
 
 | Cas homogène | Cas non homogène |
 |---------------------------|-------------------|
-| ![](results/simul_ffm.png) | ![](results/allumer.png) |
+| ![](results/homogene.png) | ![](results/non_homogene.png) |
 
 ---
 
