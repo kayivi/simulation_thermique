@@ -1,6 +1,6 @@
 # 🔥 Simulation thermique 2D (FEM)
 
-Projet réalisé dans le cadre du cours sur La méthode des éléments finis (FEM) à l'Université de Reims. Ce cours est une composante du Master 1 Mathématiques et Apllications parours Calcul Scientifique.
+Projet réalisé en binôme dans le cadre du cours sur La méthode des éléments finis (FEM) à l'Université de Reims. Ce cours est une composante du Master 1 Mathématiques et Apllications parcours Calcul Scientifique.
 
 ## 🎯 Objectif
 
@@ -11,32 +11,34 @@ Projet réalisé dans le cadre du cours sur La méthode des éléments finis (FE
 
 ## ⚙️ Méthodologie
 
-Modélisation mathématique à partir de la loi de Fourier et de l’équation de la chaleur stationnaire avec conditions de Dirichlet, Neumann et Fourier-Robin.
-- Formulation variationnelle et preuve d’existence/unicité de solution via le théorème de Lax-Milgram.
-- Maillage complexe du domaine (≈ 45 000 triangles) simulant une habitation réelle (béton, bois, PVC, vitrage, radiateurs...).
-- Implémentation d’un solveur numérique en Python avec FreeFem++ pour la génération du maillage et des matrices d’assemblage.
-- Étude de cas homogènes et non homogènes (ajout d'un ventilateur mécanique) en faisant varier l’activation des radiateurs et les flux sur le bord.
+- Modélisation mathématique de l’équation de la chaleur (2D stationnaire) avec conditions de Dirichlet, Neumann et Fourier-Robin
+- Génération d’un plan 2D du logement et maillage géométrique détaillé sous FreeFem++
+- Implémentation d’un solveur variationnel pour la température, avec source de chaleur localisée (radiateurs)
+- Simulation de cas avec différentes puissances de radiateurs et positions ouvertes/fermées des portes
+- Étude comparative de scénarios avec ou sans extraction (VMC) et analyse de leur effet sur la température (cas homogènes et non homogènes)
 
 ---
 
 ## 📁 Organisation du dépôt
-- `src/` : code en python 
-- `results/` : résultats numériques
-- `figures/` : images clés du projet (Plan, Maillage)
+- [`src/`](https://github.com/kayivi/simulation_thermique/tree/main/src) : code source Matlab et FreeFem++ 
+- [`results/`](https://github.com/kayivi/simulation_thermique/tree/main/results) : résultats numérique
+- [`figures/`](https://github.com/kayivi/simulation_thermique/tree/main/figures) : images clés du projet (Plan, Maillage)
+- [`docs/`](https://github.com/kayivi/simulation_thermique/tree/main/docs) : Compte rendu du projet
+
 
 ---
 
 ## 📷 Résultats
-
-La simulation a permis de reproduire une distribution thermique réaliste dans le logement. Les résultats ont mis en évidence l’impact des matériaux, de la disposition des sources de chaleur et des conditions aux limites sur le comportement thermique global.
+‣ Visualisation de la diffusion thermique selon la position des sources et la conductivité des parois
+‣ Analyse de l’influence des matériaux, de la géométrie et des conditions aux limites sur le confort thermique
+‣ Observation d’une meilleure homogénéité thermique avec VMC et portes ouvertes, mais aussi de pertes thermiques plus fortes en périphérie
 
 | Cas homogène | Cas non homogène |
 |---------------------------|-------------------|
-| ![](figures/champ_H.png)  | ![](figures/bond_graph_global.png) |
+| ![](results/simul_ffm.png) | ![](results/allumer.png) |
 
 ---
 
 ## 🔧 Outils
 
-`Python` `FreeFem++` `Matplotlib`  —— EDP, FEM (FE-P1), Analyse variationnelle
-
+`GNU Octave` `FreeFem++`  —— EDP, Résolution FEM (FE-P1 : éléments finis P1), Modélisation thermique, Analyse variationnelle
