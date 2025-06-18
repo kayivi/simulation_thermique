@@ -1,0 +1,1 @@
+function [x,iter] = mon_gc(A,b,x0,seuil,kmax)%Initialisation  x = x0;  r = b -A*x;  d = r;  test = norm(r);  iter = 0;% Itération  while(test>seuil && iter<kmax)    rho = (test^2) /((A*d)'*d);    x = x + rho * d;    r1 = b - A * x;    beta = (norm(r1)^2)/(norm(r)^2);    d = r1 + beta * d;        r = r1;    test = norm(r);    iter = iter + 1;  endend 

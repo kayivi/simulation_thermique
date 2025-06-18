@@ -1,0 +1,1 @@
+function Uh = validation(S,M)  Uh = gradient_conjugue_preconditione(S.A,S.F);  trisurf(M.tri,M.coord(:,1),M.coord(:,2),Uh);  min = min(Uh)  max = max(Uh)  moy = mean(Uh)end

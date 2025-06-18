@@ -1,0 +1,309 @@
+//----------------Maillage-------------------------
+
+//Maillage NON-Structuré d'un appartement
+//Ohméga = (]0,8.1[x]0,7.53[) / (([5.2,8.1]x[0,2.76]) U ([5.9,8.1]x[4.03,7.53]))
+real e = 0.2; 		// épaisseur de la cloison
+real tf = 1.5;		// taille des fenêtres
+int Neu = 1, Four = 2;
+
+	//Sommets de l'appartement
+real x1=0.0, y1=0.0;
+real x2=x1, y2=2.56;
+real x3=2.66+e, y3=y2;
+real x4=x3, y4=y2+e;
+real x5=x1, y5=y4;
+real x6=x1, y6=y5+1.27;
+real x7=2.66, y7=y6;
+real x8=x7, y8=y4+0.95;
+real x9=x3, y9=y8;
+real x10=x3, y10=y6+e;
+real x11=x1, y11=y10;
+real x12=x1, y12=y10+3.3;
+real x13=5.9, y13=y12;
+real x14=x13, y14=y10;
+real x15=x3+0.95, y15=y10;
+real x16=x15, y16=y6;
+real x17=8.1, y17=y6;
+real x18=x17, y18=y4;
+real x19=x15, y19=y4;
+real x20=x15, y20=y2;
+real x21=5.2, y21=y2;
+real x22=x21, y22=y1;
+	// placements des fenêtres
+real f1x1=1.0, f1y1=y1;
+real f1x2=f1x1+tf, f1y2 = f1y1;
+real f2x1 =1.0, f2y1 = y12;
+real f2x2=f2x1+tf, f2y2 = f2y1;
+	// porte
+real p1x1 =x18-0.9, p1y1 = y18;
+real p1x2=x18, p1y2 = p1y1;
+
+	//sommets des radiateurs
+real r1x1=1.0, r1y1=0.05;
+real r1x2=2.5, r1y2=r1y1;
+real r1x3=r1x1, r1y3=0.15;
+real r1x4=r1x2, r1y4=r1y3; 
+// 
+real r2x1=1.0, r2y1=7.48;
+real r2x2=2.5, r2y2=r2y1;
+real r2x3=r2x1, r2y3=7.38;
+real r2x4=r2x2, r2y4=r2y3; 
+// 
+real r3x1=6.2, r3y1=2.81;
+real r3x2=6.9, r3y2=r3y1;
+real r3x3=r3x1, r3y3=2.91;
+real r3x4=r3x2, r3y4=r3y3;
+// 
+real r4x1=2.56, r4y1=2.81;
+real r4x2=1.86, r4y2=r4y1;
+real r4x3=r4x1, r4y3=2.91;
+real r4x4=r4x2, r4y4=r4y3;
+ 
+//Paramétrage des bords
+	//------Chambre
+border ch1(t=0,1){x=x1+t*(f2x1-x1); y=y1; label=Four;};
+border ch2(t=0,1){x=f2x2+t*(x22-f2x2); y=y1; label=Four;};
+border ch3(t=0,1){x=x22+t*(x21-x22); y=y22+t*(y21-y22); label=Neu;};
+border ch4(t=0,1){x=x21+t*(x20-x21); y=y21; label=Neu;};
+border ch5(t=0,1){x=x3+t*(x2-x3); y=y3+t*(y2-y3); label=Neu;};
+border ch6(t=0,1){x=x2 ; y=y2+t*(y1-y2); label=Neu;};
+	//------Séjour
+border sej1(t=0,1){x=x15+t*(x14-x15); y=y15+t*(y14-y15); label=Neu;};
+border sej2(t=0,1){x=x14+t*(x13-x14); y=y14+t*(y13-y14); label=Neu;};
+border sej3(t=0,1){x=x13+t*(f2x2-x13); y=y13 ; label=Four;};
+border sej4(t=0,1){x=f2x1+t*(x12-f2x1); y=f2y1 ; label=Four;};
+border sej5(t=0,1){x=x12+t*(x11-x12); y=y12+t*(y11-y12); label=Neu;};
+border sej6(t=0,1){x=x11+t*(x10-x11); y=y11+t*(y10-y11); label=Neu;};
+	//------Salle de douche
+border sdb1(t=0,1){x=x8+t*(x7-x8); y=y8+t*(y7-y8); label=Neu;};
+border sdb2(t=0,1){x=x7+t*(x6-x7); y=y7+t*(y6-y7); label=Neu;};
+border sdb3(t=0,1){x=x6+t*(x5-x6); y=y6+t*(y5-y6); label=Neu;};
+border sdb4(t=0,1){x=x5+t*(x4-x5); y=y5+t*(y4-y5); label=Neu;};
+	//------Entrée
+border en1(t=0,1){x=x19+t*(p1x1-x19); y=y19; label=Neu;};
+border en2(t=0,1){x=x18; y=y18+t*(y17-y18); label=Neu;};
+border en3(t=0,1){x=x17+t*(x16-x17); y=y17; label=Neu;};
+border en4(t=0,1){x=x10; y=y10+t*(y9-y10); label=Neu;};
+	//------cloison
+border cl1(t=0,1){x=x20+t*(x19-x20); y=y20+t*(y19-y20); label=Neu;};
+border cl2(t=0,1){x=x16+t*(x15-x16); y=y16+t*(y15-y16); label=Neu;};
+border cl3(t=0,1){x=x9+t*(x8-x9); y=y9+t*(y8-y9); label=Neu;};
+border cl4(t=0,1){x=x4+t*(x3-x4); y=y4+t*(y3-y4); label=Neu;};
+	//------fenêtre
+border fen1(t=0,1){x=f2x2+t*(f2x1-f2x2); y=f2y2 ; label=Four;};
+border fen2(t=0,1){x=f2x1+t*(f2x2-f2x1); y=y1 ; label=Four;};
+border porte(t=0,1){x=p1x1+t*(p1x2-p1x1); y=y18; label=Neu;};
+	//------Radiateur chambre
+border R11(t=0,1){x=r1x1+t*(r1x2-r1x1); y=r1y1;};
+border R12(t=0,1){x=r1x2; y=r1y2+t*(r1y4-r1y2);};
+border R13(t=0,1){x=r1x4+t*(r1x3-r1x4); y=r1y4;};
+border R14(t=0,1){x=r1x3; y=r1y3+t*(r1y1-r1y3);};
+	//------Radiateur Séjour
+border R21(t=0,1){x=r2x3+t*(r2x4-r2x3); y=r2y3;};
+border R22(t=0,1){x=r2x4; y=r2y4+t*(r2y2-r2y4);};
+border R23(t=0,1){x=r2x2+t*(r2x1-r2x2); y=r2y2;};
+border R24(t=0,1){x=r2x1; y=r2y1+t*(r2y3-r2y1);};
+	//------Radiateur ENTREE
+border R31(t=0,1){x=r3x1+t*(r3x2-r3x1); y=r3y1;};
+border R32(t=0,1){x=r3x2; y=r3y2+t*(r3y4-r3y2);};
+border R33(t=0,1){x=r3x4+t*(r3x3-r3x4); y=r3y4;};
+border R34(t=0,1){x=r3x3; y=r3y3+t*(r3y1-r3y3);};
+	//------Radiateur SDB
+border R41(t=0,1){x=r4x1+t*(r4x2-r4x1); y=r4y1;};
+border R42(t=0,1){x=r4x2; y=r4y2+t*(r4y4-r4y2);};
+border R43(t=0,1){x=r4x4+t*(r4x3-r4x4); y=r4y4;};
+border R44(t=0,1){x=r4x3; y=r4y3+t*(r4y1-r4y3);};
+
+
+
+
+//Discrétisation :
+int n1=12;
+int n2=11;
+int n3=2;
+int n4=3;
+int n5=1;
+int n6=16;
+int n7=2;
+
+mesh Th=buildmesh(ch1(n4)+ch2(n1)+cl1(n5)+sdb1(n5)+sdb2(n1)+sdb3(n2)+sdb4(n1)+cl2(n5)+en1(n6)+sej1(n1)+sej2(n6)+sej3(n6)
+		 +sej4(n4)+sej5(n6)+cl3(n5)+en2(n2)+en3(n6)+en4(n4)+cl4(n5)+ch3(n6)+ch4(n2)+ch5(n1)
+		 +R11(n2)+R12(n3)+R13(n2)+R14(n3)
+		 +R21(n2)+R22(n3)+R23(n2)+R24(n3)
+		 +R31(n4)+R32(n3)+R33(n4)+R34(n3)
+		 +R41(-n4)+R42(-n3)+R43(-n4)+R44(-n3)
+		 +fen1(n2)+sej6(n1)+ch6(n6)+fen2(n2)+porte(n7));
+		 
+plot(ch1(n4)+ch2(n1)+cl1(n5)+sdb1(n5)+sdb2(n1)+sdb3(n2)+sdb4(n1)+cl2(n5)+en1(n6)+sej1(n1)+sej2(n6)+sej3(n6)
+		 +sej4(n4)+sej5(n6)+cl3(n5)+en2(n2)+en3(n6)+en4(n4)+cl4(n5)+ch3(n6)+ch4(n2)+ch5(n1)
+		 +R11(n2)+R12(n3)+R13(n2)+R14(n3)
+		 +R21(n2)+R22(n3)+R23(n2)+R24(n3)
+		 +R31(n4)+R32(n3)+R33(n4)+R34(n3)
+		 +R41(-n4)+R42(-n3)+R43(-n4)+R44(-n3)
+		 +fen1(n2)+sej6(n1)+fen2(n2)+ch6(n6)+porte(n7),wait=1);
+		
+
+plot(Th,wait=1);
+savemesh(Th, "plan_maison.msh");
+
+//Solveur
+//================================================================================
+
+// PRE-TRAITEMENT
+
+	//----Puissance des radiateurs
+real f1 = 8;
+real f2 = 8;
+real f3 = 2;
+real f4 = 4.5;
+	//----fonction Source de chaleur
+func f = f1*((x>=r1x1)*(x<=r1x2)*(y>=r1y1)*(y<=r1y3))
+		+f2*((x>=r2x1)*(x<=r2x2)*(y>=r2y3)*(y<=r2y1))
+		+f3*((x>=r3x1)*(x<=r3x2)*(y>=r3y1)*(y<=r3y3))
+		+f4*((x>=r4x2)*(x<=r4x1)*(y>=r4y1)*(y<=r4y3));
+	//---température extérieure
+func uE = 5;
+	//---conductivité thermique 
+real Kair = 0.0262;
+real Kver = 1.2;
+real Kboi = 0.15;
+real Kbet = 0.92;
+real Kplac = 0.04;
+real Kalu = 237;
+	//---fonction conductivité
+func kappa = Kalu*(((x>=r1x1)*(x<=r1x2)*(y>=r1y1)*(y<=r1y3))
+				 +((x>=r2x1)*(x<=r2x2)*(y>=r2y3)*(y<=r2y1))
+				 +((x>=r3x1)*(x<=r3x2)*(y>=r3y1)*(y<=r3y3))
+				 +((x>=r4x2)*(x<=r4x1)*(y>=r4y1)*(y<=r4y3)))
+			+Kboi*((x>=p1x1)*(x<=p1x2)*(y==p1y1))
+			+Kver*(((x>=f1x1)*(x<=f1x2)*(y==f1y1))
+				 +((x>=f2x1)*(x<=f2x2)*(y==f2y2)))
+			+Kbet*(((y>=y11)*(y<=y12)*(x==x1))
+				 +((y>=y5)*(y<=y6)*(x==x1))
+				 +((y>=y1)*(y<=y2)*(x==x1))
+			 	 +((y>=y11)*(y<=y12)*(x==x14))
+				 +((y>=y1)*(y<=y2)*(x==x22))
+				 +((x>=x19)*(x<p1x1)*(y==y19))
+				 +((x>=x1)*(x<f1x1)*(y==y1))+((x>f1x2)*(x<=x22)*(y==y1))
+				 +((x>=x1)*(x<f2x1)*(y==y12))+((x>f2x2)*(x<=x13)*(y==y12)))
+		   +Kplac*(((x>=x20)*(x<x21)*(y==y2))
+			  	 +((x>x2)*(x<=x3)*(y==y2))
+			  	 +((x>x5)*(x<=x4)*(y==y4))
+			  	 +((x>x6)*(x<=x7)*(y==y6))
+			  	 +((x>=x8)*(x<=x9)*(y==y8))
+			  	 +((x>x11)*(x<=x10)*(y==y10))
+			  	 +((x>=x15)*(x<x14)*(y==y14))
+			  	 +((x>=x16)*(x<x17)*(y==y16))
+			  	 +((y>=y3)*(y<=y4)*(x==x3))
+			  	 +((y>=y8)*(y<=y7)*(x==x7))
+			  	 +((y>=y9)*(y<=y10)*(x==x9))
+			  	 +((y>=y16)*(y<=y15)*(x==x15))
+			  	 +((y>=y20)*(y<=y19)*(x==x19)))
+			+Kair*(((x>x1)*(x<x22)*(y>y1)*(y<y2))
+				 +((x>x12)*(x<x13)*(y>y11)*(y<y12))
+				 +((x>x19)*(x<x18)*(y>y18)*(y<y17))
+				 +((x>x3)*(x<x20)*(y>y1)*(y<y12))
+				 +((x>x5)*(x<x8)*(y>y5)*(y<y6))
+				 +((x>=x8)*(x<=x9)*(y>y4)*(y<y9))
+				 -((x>=r1x1)*(x<=r1x2)*(y>=r1y1)*(y<=r1y3))
+				 -((x>=r2x1)*(x<=r2x2)*(y>=r2y3)*(y<=r2y1))
+				 -((x>=r3x1)*(x<=r3x2)*(y>=r3y1)*(y<=r3y3))
+				 -((x>=r4x2)*(x<=r4x1)*(y>=r4y1)*(y<=r4y3)));
+				 		
+	//----epaisseur des matériaux
+//Ici on utilise que l'épaisseur du béton et du verre car alpha n'intervient que sur les bords avec une condition de Fourier-Robin.
+real Ebet = 0.3;
+real Ever = 0.08;
+	//--------fonction épaisseur
+real ep = Ever*(((x>=f1x1)*(x<=f1x2)*(y==f1y1))
+				 +((x>=f2x1)*(x<=f2x2)*(y==f2y2)))
+		+ Ebet*(((x>=x1)*(x<f1x1)*(y==y1))+((x>f1x2)*(x<=x22)*(y==y1))
+				 +((x>=x1)*(x<f2x1)*(y==y12))+((x>f2x2)*(x<=x13)*(y==y12)));
+func alpha = kappa/ep; 
+
+//================================================
+
+// TRAITEMENT
+fespace Xh(Th,P1);  								// Espace éléments finis
+Xh uh, vh;											// Inconnue et fonction test
+problem PbMAISON(uh, vh, solver=Cholesky)
+		= int2d(Th) (kappa*(dx(uh)*dx(vh)+dy(uh)*dy(vh)))
+		+ int1d(Th,Four) (alpha*uh*vh)
+		- int2d(Th)(f*vh)
+		- int1d(Th,Four) (alpha*uE*vh);					// déclaration de la formulation variationnelle
+PbMAISON;											// l'appel au solveur éléménts finis
+
+//================================================
+
+//POST-TRAITEMENT
+plot(uh, dim=3, fill=true, value=true, wait=1, cmm="SOLUTION EF uh");
+real moy = mean(uh);
+cout <<"moyenne = " <<moy<<endl;
+
+//================================================
+
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//Problème VMC
+int NeuNH = 3;
+	//Sommets VMC
+real V1x=x12+0.15 ;
+real V2x=x11+0.15 ;
+real V3x=x6+0.15 ;
+
+
+	//Paramétrage des bords de la VMC
+border V1(t=0,1){x=V1x+t*(x12-V1x); y=y12; label=NeuNH;};
+border V2(t=0,1){x=x11+t*(V2x-x11); y=y11; label=NeuNH;};
+border V3(t=0,1){x=V3x+t*(x6-V3x); y=y6; label=NeuNH;};
+
+border sej6b(t=0,1){x=V2x+t*(x10-V2x); y=y11; label=Neu;};
+border sej4b(t=0,1){x=f2x1+t*(V1x-f2x1); y=f2y1 ; label=Four;};
+border sdb2b(t=0,1){x=x7+t*(V3x-x7); y=y7; label=Neu;};
+//Discrétisation :
+
+mesh Thb=buildmesh(ch1(n4)+ch2(n1)+cl1(n5)+sdb1(n5)+sdb2b(n1)+sdb3(n2)+sdb4(n1)+cl2(n5)+en1(n6)+sej1(n1)+sej2(n6)+sej3(n6)
+		 +sej4b(n4)+sej5(n6)+cl3(n5)+en2(n2)+en3(n6)+en4(n4)+cl4(n5)+ch3(n6)+ch4(n2)+ch5(n1)
+		 +R11(n2)+R12(n3)+R13(n2)+R14(n3)
+		 +R21(n2)+R22(n3)+R23(n2)+R24(n3)
+		 +R31(n4)+R32(n3)+R33(n4)+R34(n3)
+		 +R41(-n4)+R42(-n3)+R43(-n4)+R44(-n3)
+		 +fen1(n2)+sej6b(n1)+ch6(n6)+fen2(n2)+porte(n7)+V1(1)+V2(1)+V3(1));
+		 
+plot(ch1(n4)+ch2(n1)+cl1(n5)+sdb1(n5)+sdb2b(n1)+sdb3(n2)+sdb4(n1)+cl2(n5)+en1(n6)+sej1(n1)+sej2(n6)+sej3(n6)
+		 +sej4b(n4)+sej5(n6)+cl3(n5)+en2(n2)+en3(n6)+en4(n4)+cl4(n5)+ch3(n6)+ch4(n2)+ch5(n1)
+		 +R11(n2)+R12(n3)+R13(n2)+R14(n3)
+		 +R21(n2)+R22(n3)+R23(n2)+R24(n3)
+		 +R31(n4)+R32(n3)+R33(n4)+R34(n3)
+		 +R41(-n4)+R42(-n3)+R43(-n4)+R44(-n3)
+		 +fen1(n2)+sej6b(n1)+fen2(n2)+ch6(n6)+porte(n7)+V1(1)+V2(1)+V3(1),wait=1);
+		
+
+plot(Thb,wait=1);
+savemesh(Thb, "plan_maison_VMC.msh");
+
+//Solveur Condition de Neumann non homogène 
+//================================================================================
+
+// PRE-TRAITEMENT
+	//----fonction de non homogénéité
+func g = 1*(((x>=x11)*(x<=V2x)*(y==y11))
+		+((x>=x12)*(x<=V1x)*(y==y12))
+		+((x>=x6)*(x<=V3x)*(y==y6)));  
+//================================================
+
+// TRAITEMENT
+fespace Xhb(Thb,P1);  								// Espace éléments finis
+Xhb uhb, vhb;											// Inconnue et fonction test
+problem PbMaisonVMC (uhb, vhb, solver=Cholesky)
+		= int2d(Thb) (kappa*(dx(uhb)*dx(vhb)+dy(uhb)*dy(vhb)))
+		+ int1d(Thb,Four) (alpha*uhb*vhb)
+		- int2d(Thb)(f*vhb)
+		- int1d(Thb,Four) (alpha*uE*vhb)
+		- int1d(Thb,NeuNH)(g*vhb);				// déclaration de la formulation variationnelle
+PbMaisonVMC;										
+//================================================
+
+//POST-TRAITEMENT
+plot(uhb, dim=3, fill=true, value=true, wait=0, cmm="SOLUTION EF uh non homogene");
+real moyb = mean(uhb);
+cout <<"moyenne = " <<moyb<<endl;
